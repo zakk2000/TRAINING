@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.celizion.app.mapper.board.BoardMapper">
+	
+	<select id="selectBoardList" parameterType="map" resultType="board">
+		SELECT	SEQ
+				, TITLE
+				, CREATED_BY
+				, DATE_FORMAT(CREATE_DATE, '%Y-%m-%d %H:%i:%s') CREATE_DATE
+				, @ROWNUM := @ROWNUM + 1 ROWNUM
+		FROM BOARD
+			 , (SELECT @ROWNUM := 0) R
+		WHERE 1 = 1
+		<if test='srchFromYMDHM != null and srchFromYMDHM != "0" and srchToYMDHM != null and srchToYMDHM != "0"'>
+			AND CREATE_DATE BETWEEN STR_TO_DATE(#{srchFromYMDHM, jdbcType=VARCHAR}, '%Y%m%d%H%i%s')
+		                        AND STR_TO_DATE(#{srchToYMDHM, jdbcType=VARCHAR}, '%Y%m%d%H%i%s')
+		</if>
+		
+		<if test="searchStr != null and searchStr != ''">
+			<choose>
+				<when test="searchType != null and searchType.equalsIgnoreCase('ALL')">
+					AND (TITLE LIKE CONCAT('%', #{searchStr, jdbcType=VARCHAR}, '%') OR CONT LIKE CONCAT('%', #{searchStr, jdbcType=VARCHAR}, '%'))
+				</when>
+				<when test="searchType != null and searchType.equalsIgnoreCase('TITLE')">
+					AND TITLE LIKE CONCAT('%', #{searchStr, jdbcType=VARCHAR}, '%')
+				</when>
+				<when test="searchType != null and searchType.equalsIgnoreCase('CONT')">
+				  AND CONT LIKE CONCAT('%', #{searchStr, jdbcType=VARCHAR}, '%')
+				</when>
+				<when test="searchType != null and searchType.equalsIgnoreCase('CREATEDBY')">
+				  AND CREATED_BY LIKE CONCAT('%', #{searchStr, jdbcType=VARCHAR}, '%')
+				</when>
+			</choose>
+		</if>
+		ORDER BY ROWNUM DESC
+		LIMIT #{startOffset, jdbcType=NUMERIC}, #{pageListRowLimit, jdbcType=NUMERIC}
+	</select>
+	
+	<select id="selectCountBoardList" parameterType="board" resultType="java.lang.Integer">
+		SELECT	COUNT(SEQ)
+		FROM BOARD
+		WHERE 1 = 1
+		<if test='srchFromYMDHM != null and srchFromYMDHM != "0" and srchToYMDHM != null and srchToYMDHM != "0"'>
+			AND CREATE_DATE BETWEEN STR_TO_DATE(#{srchFromYMDHM, jdbcType=VARCHAR}, '%Y%m%d%H%i%s')
+		                        AND STR_TO_DATE(#{srchToYMDHM, jdbcType=VARCHAR}, '%Y%m%d%H%i%s')
+		</if>
+		
+		<if test="searchStr != null and searchStr != ''">
+			<choose>
+				<when test="searchType != null and searchType.equalsIgnoreCase('ALL')">
+					AND (TITLE LIKE CONCAT('%', #{searchStr, jdbcType=VARCHAR}, '%') OR CONT LIKE CONCAT('%', #{searchStr, jdbcType=VARCHAR}, '%'))
+				</when>
+				<when test="searchType != null and searchType.equalsIgnoreCase('TITLE')">
+					AND TITLE LIKE CONCAT('%', #{searchStr, jdbcType=VARCHAR}, '%')
+				</when>
+				<when test="searchType != null and searchType.equalsIgnoreCase('CONT')">
+				  AND CONT LIKE CONCAT('%', #{searchStr, jdbcType=VARCHAR}, '%')
+				</when>
+				<when test="searchType != null and searchType.equalsIgnoreCase('CREATEDBY')">
+				  AND CREATED_BY LIKE CONCAT('%', #{searchStr, jdbcType=VARCHAR}, '%')
+				</when>
+			</choose>
+		</if>
+	</select>
+
+</mapper>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+	
+	<definition name="base.definition" template="/WEB-INF/views/template/layout.jsp">
+		
+		<put-attribute name="title" value="SPRING4 COMMUNITY" />
+		<put-attribute name="header" value="/WEB-INF/views/template/header.jsp" />
+		<put-attribute name="body" value="" />
+		
+		<put-list-attribute name="bootstrapCss">
+			<add-attribute value="/resources/css/bootstrap.css" />
+			<add-attribute value="/resources/css/bootstrap-datetimepicker.css" />
+			<add-attribute value="/resources/css/sb-admin.css" />
+			<add-attribute value="/resources/css/plugins/morris.css" />
+			<add-attribute value="/resources/css/font-awesome.min.css" />
+			<add-attribute value="/resources/css/bootstrap-formhelpers.min.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="faviconIco">
+			<add-attribute value="/resources/images/ico/favicon.ico" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="jQuery">
+			<add-attribute value="/resources/js/jquery-1.11.1.min.js" />
+			<add-attribute value="/resources/js/jquery-ui.min.js" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="bootstrapJs">
+			<add-attribute value="/resources/js/moment-with-locales.js" />
+			<add-attribute value="/resources/js/bootstrap.min.js" />
+			<add-attribute value="/resources/js/bootstrap-datetimepicker.min.js" />
+			<add-attribute value="/resources/js/bootbox.min.js" />
+			<add-attribute value="/resources/js/bootstrap-formhelpers-phone.js" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="userDefinedJs">
+			<add-attribute value="/resources/js/common.js" />
+		</put-list-attribute>
+	
+    </definition>
+    
+    <definition name="login.definition" template="/WEB-INF/views/template/loginLayout.jsp">
+    	
+    	<put-attribute name="title" value="SPRING4 COMMUNITY" />
+		<put-attribute name="body" value="" />
+		
+		<put-list-attribute name="bootstrapCss">
+			<add-attribute value="/resources/css/bootstrap.css" />
+			<add-attribute value="/resources/css/font-awesome.min.css" />
+			<add-attribute value="/resources/css/form-elements.css" />
+			<add-attribute value="/resources/css/style.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="faviconIco">
+			<add-attribute value="/resources/images/ico/favicon.ico" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="jQuery">
+			<add-attribute value="/resources/js/jquery-1.11.1.min.js" />
+			<add-attribute value="/resources/js/jquery.backstretch.min.js" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="bootstrapJs">
+			<add-attribute value="/resources/js/bootstrap.min.js" />
+			<add-attribute value="/resources/js/login-template-scripts.js" />
+		</put-list-attribute>
+    
+    </definition>
+    
+    <definition name="popup.definition" template="/WEB-INF/views/template/popupLayout.jsp">
+    	
+    	<put-attribute name="title" value="SPRING4 COMMUNITY" />
+		<put-attribute name="body" value="" />
+		
+		<put-list-attribute name="bootstrapCss">
+			<add-attribute value="/resources/css/bootstrap.css" />
+			<add-attribute value="/resources/css/bootstrap-datetimepicker.css" />
+			<add-attribute value="/resources/css/sb-admin.css" />
+			<add-attribute value="/resources/css/plugins/morris.css" />
+			<add-attribute value="/resources/css/font-awesome.min.css" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="faviconIco">
+			<add-attribute value="/resources/images/ico/favicon.ico" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="jQuery">
+			<add-attribute value="/resources/js/jquery-1.11.1.min.js" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="bootstrapJs">
+			<add-attribute value="/resources/js/moment-with-locales.js" />
+			<add-attribute value="/resources/js/bootstrap.min.js" />
+			<add-attribute value="/resources/js/bootstrap-datetimepicker.min.js" />
+		</put-list-attribute>
+		
+		<put-list-attribute name="userDefinedJs">
+			<add-attribute value="/resources/js/common.js" />
+		</put-list-attribute>
+    
+    </definition>
+    
+    <definition name="plugins.definition" extends="base.definition" template="/WEB-INF/views/template/pluginsLayout.jsp">
+    	
+    	<put-list-attribute name="chartsJs">
+			<add-attribute value="/resources/js/plugins/morris/morris-data.js" />
+			<add-attribute value="/resources/js/plugins/morris/morris.min.js" />
+			<add-attribute value="/resources/js/plugins/morris/raphael.min.js" />
+		</put-list-attribute>
+    
+    </definition>
+
+</tiles-definitions>
